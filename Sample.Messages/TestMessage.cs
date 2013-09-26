@@ -14,9 +14,6 @@ namespace Sample.Messages {
 
         public TestMessage() {
             _correlationId = Guid.NewGuid();
-            Name = "Howard";
-
-            Console.WriteLine("Created TestMessage (constructor)");
         }
 
     }

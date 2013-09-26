@@ -5,7 +5,6 @@ using Sample.Messages;
 namespace SamplePublisher {
     class Program {
         static void Main() {
-
             Console.WriteLine("Start of publisher");
 
             Bus.Initialize(cfg => {
@@ -15,14 +14,16 @@ namespace SamplePublisher {
                 cfg.VerifyMsDtcConfiguration();
             });
             
-            Console.WriteLine("Sleeping before publishing");
-            System.Threading.Thread.Sleep(15000);
-            Console.WriteLine("Writing the message");
             IServiceBus bus = Bus.Instance;
-            bus.Publish(new TestMessage());
-            Console.WriteLine("Published message");
-            Console.WriteLine("Hit return to continue");
-            Console.ReadLine();
+            for (;;) {
+                Console.Write("Messsage: ");
+                string text = Console.ReadLine();
+                if (string.IsNullOrEmpty(text))
+                    break;
+
+                var msg = new TestMessage {Name = text};
+                bus.Publish(msg);
+            }
         }
     }
 }

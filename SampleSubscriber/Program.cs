@@ -5,6 +5,7 @@ namespace SampleSubscriber {
     class Program {
         static void Main() {
             Console.WriteLine("Start of subscriber");
+            Console.WriteLine(@"Note that if you are using the subscription service, you must run C:\Source\MassTransit\src\MassTransit.RuntimeServices\bin\Debug\MassTransit.RuntimeServices.exe");
 
             Bus.Initialize(cfg => {
                 cfg.ReceiveFrom("msmq://localhost/mytestqueuesub");
