@@ -9,8 +9,7 @@ namespace SamplePublisher {
 
             Bus.Initialize(cfg => {
                 cfg.ReceiveFrom("msmq://localhost/mytestqueue");
-                //cfg.UseMsmq(mq => mq.UseMulticastSubscriptionClient());
-                cfg.UseMsmq(mq => mq.UseSubscriptionService("msmq://localhost/mt_subscriptions"));
+                cfg.UseMsmq(mq => mq.UseMulticastSubscriptionClient());
                 cfg.VerifyMsDtcConfiguration();
             });
             

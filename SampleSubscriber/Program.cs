@@ -6,6 +6,7 @@ namespace SampleSubscriber {
         static int Main(string[] args) {
             Console.WriteLine("Start of subscriber");
             Console.WriteLine(@"Note that if you are using the subscription service, you must run C:\Source\MassTransit\src\MassTransit.RuntimeServices\bin\Debug\MassTransit.RuntimeServices.exe");
+            Console.WriteLine("If you are using UseMulticastSubscriptionClient then you have to install multicast support (in Message Queueing) window feature.");
 
             if (args.Length != 1) {
                 Usage();
@@ -18,8 +19,7 @@ namespace SampleSubscriber {
 
             Bus.Initialize(cfg => {
                 cfg.ReceiveFrom(subscriberQueue);
-                //cfg.UseMsmq(mq => mq.UseMulticastSubscriptionClient());
-                cfg.UseMsmq(mq => mq.UseSubscriptionService("msmq://localhost/mt_subscriptions"));
+                cfg.UseMsmq(mq => mq.UseMulticastSubscriptionClient());
                 cfg.VerifyMsDtcConfiguration();
 
                 cfg.Subscribe(sbc => {
