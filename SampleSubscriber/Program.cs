@@ -25,8 +25,6 @@ namespace SampleSubscriber {
 
                 cfg.Subscribe(sbc => {
                     sbc.Consumer<PhoneCallSubscriber>();
-                });
-                cfg.Subscribe(sbc => {
                     sbc.Consumer<EmailSubscriber>();
                 });
             });
