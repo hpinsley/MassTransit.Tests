@@ -1,5 +1,6 @@
 ﻿using System;
 using MassTransit;
+using MassTransit.SubscriptionConfigurators;
 
 namespace SampleSubscriber {
     class Program {
@@ -23,7 +24,10 @@ namespace SampleSubscriber {
                 cfg.VerifyMsDtcConfiguration();
 
                 cfg.Subscribe(sbc => {
-                    sbc.Consumer<TestMessageSubscriber>().Permanent();
+                    sbc.Consumer<PhoneCallSubscriber>();
+                });
+                cfg.Subscribe(sbc => {
+                    sbc.Consumer<EmailSubscriber>();
                 });
             });
 
